@@ -49,7 +49,7 @@ Brain-Cog 論文報告與程式實作：以 CifarConvNet 為例
 
 ---
 
-##  三、MCN 多隔室神經元：設計思路
+## 三、MCN 多隔室神經元：設計思路
 
 | 區塊         | 功能說明                         |
 |--------------|----------------------------------|
@@ -58,17 +58,21 @@ Brain-Cog 論文報告與程式實作：以 CifarConvNet 為例
 | 軀體 (Soma)     | 整合樹突電位並決定是否發放脈衝         |
 
 - **非線性門控整合**：頂端樹突的電位 \(V_a[t]\) 透過 sigmoid 函數控制基底樹突 \(V_b[t]\) 與 soma 膜電位的資訊貢獻。  
-- **動態方程**（示意）：
-  \[
-    U[t] = \sigma(V_a[t]) \cdot V_b[t] + \text{Sin}[t]
-  \]
-  - \(V_b[t]\)：基底樹突膜電位  
-  - \(V_a[t]\)：頂端樹突膜電位  
-  - \(\sigma\)：sigmoid 函數（門控）  
-  - 當 Soma 膜電位 \(U[t]\) 超過閾值時發放并重置。  
+
+### 🧮 動態方程（MCN 示意）
+
+![U公式](https://latex.codecogs.com/png.image?\dpi{150}&space;U[t]=\sigma(V_a[t])\cdot%20V_b[t]+\text{Sin}[t])
+
+- \(V_b[t]\)：基底樹突膜電位  
+- \(V_a[t]\)：頂端樹突膜電位  
+- \(\sigma\)：sigmoid 函數（門控）  
+- 當 Soma 膜電位 \(U[t]\) 超過閾值時發放并重置。  
 
 - **長短期記憶**：由於不同樹突之間的非線性互動與時間常數，可保留「歷史脈衝資訊」，提升序列任務的表現。  
-- **可學習參數**：基底/頂端突觸權重 \(W_b, W_h^b, W_a, W_h^a\) 以及膜時間常數 \( \tau, \tau_a, \tau_b \)。  
+
+- **可學習參數**：
+
+![參數公式](https://latex.codecogs.com/png.image?\dpi{150}&space;W_b,\;W_h^b,\;W_a,\;W_h^a,\;\tau,\;\tau_a,\;\tau_b)
 
 ---
 
